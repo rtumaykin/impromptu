@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Impromptu\Impromptu.csproj" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>d0873b53-9dd0-45a4-847e-553553c79aa8</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NuProjPath Condition=" '$(NuProjPath)' == '' ">$(MSBuildExtensionsPath)\NuProj\</NuProjPath>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
+  <PropertyGroup Label="Configuration">
+    <Id>Impromptu</Id>
+    <Version>1.0.0</Version>
+    <Title>Impromptu - Framework for loading and isolating plugins</Title>
+    <Authors>Roman Tumaykin</Authors>
+    <Owners>Roman Tumaykin</Owners>
+    <Summary>Impromptu.NuGetPackage</Summary>
+    <Description>Impromptu.NuGetPackage</Description>
+    <ReleaseNotes>
+    </ReleaseNotes>
+    <ProjectUrl>https://github.com/rtumaykin/Impromptu/</ProjectUrl>
+    <LicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</LicenseUrl>
+    <Copyright>Copyright © 2015-2016 Roman Tumaykin</Copyright>
+    <Tags>Impromptu,Plugins</Tags>
+    <EmbedSourceFiles>true</EmbedSourceFiles>
+  </PropertyGroup>
+  <Import Project="$(NuProjPath)\NuProj.targets" />
+</Project>

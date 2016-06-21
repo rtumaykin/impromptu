@@ -26,7 +26,7 @@ namespace Impromptu.Package
         /// <summary>
         /// Retrieves package by PackageId and Version and unpacks it into a subfolder of the Destination Path 
         /// </summary>
-        /// <param name="destinationBasePath">Path to the root HotAssembly Package directory</param>
+        /// <param name="destinationBasePath">Path to the root Impromptu Package directory</param>
         /// <param name="packageId">Package Id</param>
         /// <param name="version">Package Version</param>
         /// <returns>Path to the package directory, or null if the package was not found</returns>
@@ -34,7 +34,7 @@ namespace Impromptu.Package
         /// <summary>
         /// Retrieves the recent version of the package by PackageId and unpacks it into a subfolder of the Destination Path 
         /// </summary>
-        /// <param name="destinationBasePath">Path to the root HotAssembly Package directory</param>
+        /// <param name="destinationBasePath">Path to the root Impromptu Package directory</param>
         /// <param name="packageId">Package Id</param>
         /// <returns>Path to the package directory, or null if the package was not found</returns>
         string Retrieve(string destinationBasePath, string packageId);

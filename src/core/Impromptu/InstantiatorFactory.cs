@@ -177,7 +177,7 @@ namespace Impromptu
                 $"Constructor signature {paramsHash} not found for package {instantiatorKey}", null);
         }
 
-        private readonly string _rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "HotAssemblyPackages");
+        private readonly string _rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ImpromptuPackages");
 
         /// <summary>
         /// Creates instantiators for all of the types in the package that can be instantiated
@@ -217,7 +217,7 @@ namespace Impromptu
             if (hotAssemblies == null)
                 return returnDictionary;
 
-            foreach (var hotType in hotAssemblies.SelectMany(hotAssembly => hotAssembly.ExportedTypes.Where(
+            foreach (var hotType in hotAssemblies.SelectMany(impromptu => impromptu.ExportedTypes.Where(
                 t =>
                     t.IsClass &&
                     typeof(T).IsAssignableFrom(t) &&

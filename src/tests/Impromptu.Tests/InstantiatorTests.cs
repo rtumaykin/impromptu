@@ -36,9 +36,9 @@ namespace Impromptu.Tests
             _output = output;
 
             _basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                $"HotAssemblyPackages_Test_{Guid.NewGuid().ToString("N")}");
-
-            Directory.CreateDirectory(_basePath);
+                "ImpromptuPackages", "Impromptu.Tests.Something.NugetPackage.1.0.0");
+            //if (Directory.Exists(_basePath))
+            //    Directory.Delete(_basePath, true);
         }
 
         [Fact]
@@ -126,10 +126,7 @@ namespace Impromptu.Tests
             var x1 = z1.DoSomething();
         }
 
-        public void Dispose()
-        {
-            Directory.Delete(_basePath, true);
-        }
+        public void Dispose() {}
     }
 }
 

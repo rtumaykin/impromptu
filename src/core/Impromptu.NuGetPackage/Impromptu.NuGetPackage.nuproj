@@ -22,7 +22,7 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>Impromptu</Id>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Title>Impromptu - Framework for loading and isolating plugins</Title>
     <Authors>Roman Tumaykin</Authors>
     <Owners>Roman Tumaykin</Owners>

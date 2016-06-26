@@ -35,10 +35,21 @@ namespace Impromptu.Tests
         {
             _output = output;
 
-            _basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "ImpromptuPackages", "Impromptu.Tests.Something.NugetPackage.1.0.0");
-            //if (Directory.Exists(_basePath))
-            //    Directory.Delete(_basePath, true);
+            _basePath = Path.Combine(Path.GetTempPath(),
+                $"Impromptu_Tests_{Guid.NewGuid().ToString("N")}");
+
+            // clean up previous runs (cant do this at the end because the files are locked by the appdomain
+            foreach (var directory in Directory.EnumerateDirectories(Path.GetTempPath(), "Impromptu_Tests_*"))
+            {
+                try
+                {
+                    Directory.Delete(directory, true);
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
         }
 
         [Fact]
@@ -47,7 +58,7 @@ namespace Impromptu.Tests
             var configName = AppDomain.CurrentDomain.BaseDirectory.Split('\\').Last();
             var fp = new NugetPackageRetriever(new[] {Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                         NugetPackageLocation, configName)});
-            var ha = new InstantiatorFactory<ISomething>(fp);
+            var ha = new InstantiatorFactory<ISomething>(fp, _basePath);
             {
                 // let it jit compile
                 var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0", "Impromptu.Tests.Something1"));
@@ -126,7 +137,17 @@ namespace Impromptu.Tests
             var x1 = z1.DoSomething();
         }
 
-        public void Dispose() {}
+        public void Dispose()
+        {
+            //if (Directory.Exists(_basePath))
+            //    Directory.Delete(_basePath, true);            
+        }
+    }
+    public class DummyTests : IClassFixture<InstantiatorTests>
+    {
+        public void SetFixture(InstantiatorTests data)
+        {
+        }
     }
 }
 

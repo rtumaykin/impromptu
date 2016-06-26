@@ -31,6 +31,7 @@ namespace Impromptu
     public sealed class InstantiatorFactory<T> where T : class
     {
         private readonly IPackageRetriever _packageRetriever;
+        private readonly string _rootPath;
 
         static InstantiatorFactory()
         {
@@ -64,9 +65,17 @@ namespace Impromptu
             }
         }
 
+        internal InstantiatorFactory(IPackageRetriever packageRetriever, string rootPath)
+        {
+            _packageRetriever = packageRetriever;
+            _rootPath = rootPath;
+        }
+
         public InstantiatorFactory(IPackageRetriever packageRetriever)
         {
             _packageRetriever = packageRetriever;
+            _rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "ImpromptuPackages");
         }
 
         /// <summary>
@@ -176,8 +185,6 @@ namespace Impromptu
             throw new InstantiatorException(
                 $"Constructor signature {paramsHash} not found for package {instantiatorKey}", null);
         }
-
-        private readonly string _rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ImpromptuPackages");
 
         /// <summary>
         /// Creates instantiators for all of the types in the package that can be instantiated

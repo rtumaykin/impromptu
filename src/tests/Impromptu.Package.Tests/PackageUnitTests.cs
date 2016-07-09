@@ -30,7 +30,7 @@ namespace Impromptu.Package.Tests
     {
         private readonly ITestOutputHelper _output;
         private readonly string _basePath;
-        private const string NugetPackageLocation = @"..\..\..\helpers\Impromptu.Tests.Something.NugetPackage\bin";
+        private const string NugetPackageLocation = @"..\..\..\helpers\Impromptu.Tests.Something\bin";
 
         public PackageUnitTests(ITestOutputHelper output)
         {
@@ -43,8 +43,8 @@ namespace Impromptu.Package.Tests
         }
 
         [Theory]
-        [InlineData("Impromptu.Tests.Something.NugetPackage", "1.0.0")]
-        [InlineData("Impromptu.Tests.Something.NugetPackage", null)]
+        [InlineData("Impromptu.Tests.Something", "1.0.0")]
+        [InlineData("Impromptu.Tests.Something", null)]
         public void Success_ConcurrentGet(string packageName, string packageVersion)
         {
             var start = DateTime.Now;
@@ -54,7 +54,7 @@ namespace Impromptu.Package.Tests
                 threads.Add(Task.Run(() => CheckRetriever(packageName, packageVersion)));
             }
             Task.WaitAll(threads.ToArray());
-            Assert.True(_res.All(r => !string.IsNullOrEmpty(r) && r == Path.Combine(_basePath, "Impromptu.Tests.Something.NugetPackage.1.0.0")));
+            Assert.True(_res.All(r => !string.IsNullOrEmpty(r) && r == Path.Combine(_basePath, "Impromptu.Tests.Something.1.0.0")));
             _output.WriteLine($"Execution took {(DateTime.Now - start).TotalMilliseconds} milliseconds.");
         }
 
@@ -88,8 +88,8 @@ namespace Impromptu.Package.Tests
         }
 
         [Theory]
-        [InlineData("Impromptu.Tests.Something.NugetPackage", "1.0.0")]
-        [InlineData("Impromptu.Tests.Something.NugetPackage", null)]
+        [InlineData("Impromptu.Tests.Something", "1.0.0")]
+        [InlineData("Impromptu.Tests.Something", null)]
         public void Success_GetOne(string packageName, string packageVersion)
         {
             string pak;
@@ -117,12 +117,12 @@ namespace Impromptu.Package.Tests
                     new SemanticVersion(packageVersion));
             }
 
-            Assert.True(!string.IsNullOrEmpty(pak) && pak == Path.Combine(_basePath, "Impromptu.Tests.Something.NugetPackage.1.0.0"));
+            Assert.True(!string.IsNullOrEmpty(pak) && pak == Path.Combine(_basePath, "Impromptu.Tests.Something.1.0.0"));
         }
 
         [Theory]
-        [InlineData("Impromptu.Tests.Something.NugetPackage", "2.0.0")]
-        [InlineData("Impromptu.Tests.Something.NugetPackagexx", null)]
+        [InlineData("Impromptu.Tests.Something", "2.0.0")]
+        [InlineData("Impromptu.Tests.Somethingxx", null)]
         public void Fail_GetOne_InvalidPackage(string packageName, string packageVersion)
         {
             string pak;
@@ -150,7 +150,7 @@ namespace Impromptu.Package.Tests
                     new SemanticVersion(packageVersion));
             }
 
-            Assert.True(string.IsNullOrEmpty(pak) || pak != Path.Combine(_basePath, "Impromptu.Tests.Something.NugetPackage.1.0.0"));
+            Assert.True(string.IsNullOrEmpty(pak) || pak != Path.Combine(_basePath, "Impromptu.Tests.Something.1.0.0"));
         }
 
         public void Dispose()

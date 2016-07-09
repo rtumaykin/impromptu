@@ -29,7 +29,7 @@ namespace Impromptu.Tests
     {
         private readonly ITestOutputHelper _output;
         private readonly string _basePath;
-        private const string NugetPackageLocation = @"..\..\..\helpers\Impromptu.Tests.Something.NugetPackage\bin";
+        private const string NugetPackageLocation = @"..\..\..\helpers\Impromptu.Tests.Something\bin";
 
         public InstantiatorTests(ITestOutputHelper output)
         {
@@ -61,13 +61,13 @@ namespace Impromptu.Tests
             var ha = new InstantiatorFactory<ISomething>(fp, _basePath);
             {
                 // let it jit compile
-                var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0", "Impromptu.Tests.Something1"));
+                var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something", "1.0.0", "Impromptu.Tests.Something1"));
             }
 
             var start = DateTime.Now;
             for (var i = 0; i < 1000000; i++)
             {
-                var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0", "Impromptu.Tests.Something1"));
+                var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something", "1.0.0", "Impromptu.Tests.Something1"));
                 var x = z.DoSomething();
             }
             var elapsed = DateTime.Now.Subtract(start).TotalMilliseconds;
@@ -89,7 +89,7 @@ namespace Impromptu.Tests
             {
                 tasks.Add(Task.Run(() =>
                 {
-                    var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0", "Impromptu.Tests.Something1"));
+                    var z = ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something", "1.0.0", "Impromptu.Tests.Something1"));
                     var x = z.DoSomething();
                 }));
             }
@@ -111,7 +111,7 @@ namespace Impromptu.Tests
             {
                 var z =
                     ha.Instantiate(
-                        new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0",
+                        new InstantiatorKey("Impromptu.Tests.Something", "1.0.0",
                             "Impromptu.Tests.Something1"), 100);
             }
         );
@@ -128,11 +128,11 @@ namespace Impromptu.Tests
                     NugetPackageLocation, configName)});
             var ha = new InstantiatorFactory<ISomething>(fp);
             var z =
-                ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0",
+                ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something", "1.0.0",
                     "Impromptu.Tests.Something1"));
             var x = z.DoSomething();
             var z1 =
-                ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something.NugetPackage", "1.0.0",
+                ha.Instantiate(new InstantiatorKey("Impromptu.Tests.Something", "1.0.0",
                     "Impromptu.Tests.Something2"));
             var x1 = z1.DoSomething();
         }

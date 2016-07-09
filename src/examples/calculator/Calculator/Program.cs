@@ -25,8 +25,8 @@ namespace SharedTypes
 
                 var config = AppDomain.CurrentDomain.BaseDirectory.Split('\\').Last(s => !string.IsNullOrWhiteSpace(s));
 
-                const string additorRelativePath = "..\\..\\..\\Calculator.Extension.Additor.NugetPackage\\bin\\";
-                const string subtractorRelativePath = "..\\..\\..\\Calculator.Extension.Subtractor.NugetPackage\\bin\\";
+                const string additorRelativePath = "..\\..\\..\\Calculator.Extension.Additor\\bin\\";
+                const string subtractorRelativePath = "..\\..\\..\\Calculator.Extension.Subtractor\\bin\\";
 
                 var nugetPackageRetriever =
                     new Impromptu.Package.NugetPackageRetriever(new[]

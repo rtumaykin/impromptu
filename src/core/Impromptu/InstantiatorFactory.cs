@@ -216,8 +216,7 @@ namespace Impromptu
                     null);
 
             // find the directory where the dlls are
-            var libPath = Directory.GetDirectories(Path.Combine(packagePath, "lib")).FirstOrDefault() ??
-                          Path.Combine(packagePath, "lib");
+            var libPath = Path.Combine(packagePath, "impromptu");
 
             var hotAssemblies = PluginContext<T>.DiscoverHotAssemblies(libPath);
 

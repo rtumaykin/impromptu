@@ -61,9 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\core\Impromptu.Package\Impromptu.Package.csproj">
       <Project>{42db6335-594a-410b-8abf-ce450979685f}</Project>
       <Name>Impromptu.Package</Name>
@@ -76,6 +73,9 @@
       <Project>{17a7de10-efe8-469f-8543-9a0afe0b99bd}</Project>
       <Name>Impromptu.Tests.ISomething</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

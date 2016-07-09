@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Impromptu")]
+[assembly: AssemblyTitle("Impromptu - Framework for easy loading and isolating plugins")]
 [assembly: AssemblyDescription("Framework for easy loading and isolating plugins")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Roman Tumaykin")]

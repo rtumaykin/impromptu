@@ -51,7 +51,7 @@ namespace Impromptu.Tests
                 }
             }
         }
-
+#if DEBUG
         [Fact]
         public void Should_Successfully_Instantiate()
         {
@@ -136,7 +136,7 @@ namespace Impromptu.Tests
                     "Impromptu.Tests.Something2"));
             var x1 = z1.DoSomething();
         }
-
+#endif
         public void Dispose()
         {
             //if (Directory.Exists(_basePath))

@@ -4,6 +4,7 @@
 open Fake
 open System
 open System.IO
+open Fake.FileUtils
 
 //--------------------------------------------------------------------------------
 // Information about the project for Nuget and Assembly info files
@@ -17,7 +18,7 @@ let company = "Roman Tumaykin"
 let description = "A .NET framework for loading and isolating plugins at runtime"
 let tags = ["impromptu";"plugins"]
 let configuration = "Release"
-//let toolDir = "tools"
+
 
 // Read release notes and version
 
@@ -39,6 +40,7 @@ printfn "Assembly version: %s\nNuget version; %s\n" release.AssemblyVersion rele
 // Directories
 
 let buildDir = "./build/"
+let testDir = FullName "TestResults"
 
 open Fake.RestorePackageHelper
 Target "RestorePackages" (fun _ -> 
@@ -54,6 +56,7 @@ Target "RestorePackages" (fun _ ->
 
 Target "Clean" <| fun _ ->
     DeleteDir buildDir
+    DeleteDir testDir
 
 
 //--------------------------------------------------------------------------------
@@ -65,6 +68,40 @@ Target "Build" <| fun _ ->
     |> MSBuildRelease "" "Clean,Rebuild"
     |> ignore
 
+//--------------------------------------------------------------------------------
+// Run tests
+
+open Fake.Testing
+Target "RunTests" <| fun _ ->  
+    let xunitTestAssemblies = !! "src/tests/**/bin/Release/*.Tests.dll"
+
+    mkdir testDir
+   
+    let xunitToolPath = findToolInSubPath "xunit.console.exe" "src/packages/FAKE/xunit.runner.console*/tools"
+
+    printfn "Using XUnit runner: %s" xunitToolPath
+    let runSingleAssembly assembly =
+        let assemblyName = Path.GetFileNameWithoutExtension(assembly)
+        xUnit2
+            (fun p -> { p with XmlOutputPath = Some (testDir + @"\" + assemblyName + "_xunit.xml"); HtmlOutputPath = Some (testDir + @"\" + assemblyName + "_xunit.HTML"); ToolPath = xunitToolPath; TimeOut = System.TimeSpan.FromMinutes 30.0; Parallel = ParallelMode.NoParallelization }) 
+            (Seq.singleton assembly)
+
+    xunitTestAssemblies |> Seq.iter (runSingleAssembly)
+    
+//--------------------------------------------------------------------------------
+// Generate AssemblyInfo files with the version for release notes 
+
+open AssemblyInfoFile
+
+Target "AssemblyInfo" <| fun _ ->
+    CreateCSharpAssemblyInfoWithConfig "src/SharedAssemblyInfo.cs" [
+        Attribute.Company company
+        Attribute.Copyright copyright
+        Attribute.Trademark ""
+        Attribute.Version version
+        Attribute.FileVersion version ] <| AssemblyInfoFileConfig(false)
+
+Target "BuildRelease" DoNothing
 
 
 //--------------------------------------------------------------------------------
@@ -80,14 +117,11 @@ Target "Help" <| fun _ ->
       " * Build      Builds"
       " * Nuget      Create and optionally publish nugets packages"
       " * RunTests   Runs tests"
-      " * MultiNodeTests  Runs the slower multiple node specifications"
       " * All        Builds, run tests, creates and optionally publish nuget packages"
       ""
       " Other Targets"
       " * Help       Display this help" 
       " * HelpNuget  Display help about creating and pushing nuget packages" 
-      " * HelpDocs   Display help about creating and pushing API docs"
-      " * HelpMultiNodeTests  Display help about running the multiple node specifications"
       ""]
 
 Target "HelpNuget" <| fun _ ->
@@ -136,7 +170,9 @@ Target "HelpNuget" <| fun _ ->
 //--------------------------------------------------------------------------------
 
 // build dependencies
-"Clean" ==> "RestorePackages" ==> "Build" 
+"Clean" ==> "RestorePackages" ==> "AssemblyInfo" ==> "Build" ==> "RunTests" ==> "BuildRelease"
+
+
 
 
 RunTargetOrDefault "Help"

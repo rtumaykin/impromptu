@@ -19,7 +19,7 @@ using Impromptu.Tests;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Impromptu.BaselneTest
+namespace Impromptu.Baseline.Tests
 {
     public class BaselineTest
     {

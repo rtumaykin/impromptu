@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impromptu.Tests.ISomething"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impromptu.Tests.Something", "tests\helpers\Impromptu.Tests.Something\Impromptu.Tests.Something.csproj", "{16915494-C4A4-46AD-8996-EE59C94E00BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impromptu.BaselneTest", "tests\Impromptu.BaselneTest\Impromptu.BaselneTest.csproj", "{DC0A75D6-3653-409C-8074-362ECA779EA8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impromptu.Tests", "tests\Impromptu.Tests\Impromptu.Tests.csproj", "{CB36EB10-D8CD-4C9F-B0C6-082F6AA5D2AF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{16915494-C4A4-46AD-8996-EE59C94E00BB} = {16915494-C4A4-46AD-8996-EE59C94E00BB}
@@ -45,6 +43,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Extension.Subtractor", "examples\calculator\Calculator.Extension.Subtractor\Calculator.Extension.Subtractor.csproj", "{6D739329-CA0A-4B1B-AA3E-EB3F6DE04C7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.SharedType", "examples\calculator\Calculator.SharedType\Calculator.SharedType.csproj", "{4C6A42A3-9D62-4F6C-967F-7E2C801E921F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Impromptu.Baseline.Tests", "tests\Impromptu.Baseline.Tests\Impromptu.Baseline.Tests.csproj", "{DC0A75D6-3653-409C-8074-362ECA779EA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44879555-D1D5-4AD2-B085-2E36744061DE}"
+	ProjectSection(SolutionItems) = preProject
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,10 +81,6 @@ Global
 		{16915494-C4A4-46AD-8996-EE59C94E00BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16915494-C4A4-46AD-8996-EE59C94E00BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16915494-C4A4-46AD-8996-EE59C94E00BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB36EB10-D8CD-4C9F-B0C6-082F6AA5D2AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB36EB10-D8CD-4C9F-B0C6-082F6AA5D2AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB36EB10-D8CD-4C9F-B0C6-082F6AA5D2AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -104,6 +105,10 @@ Global
 		{4C6A42A3-9D62-4F6C-967F-7E2C801E921F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C6A42A3-9D62-4F6C-967F-7E2C801E921F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C6A42A3-9D62-4F6C-967F-7E2C801E921F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC0A75D6-3653-409C-8074-362ECA779EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,7 +121,6 @@ Global
 		{47464643-28DA-41E2-AA7B-31DD78F10EF3} = {611D0B9A-4A8A-4987-AE17-4A67FF6C2B6B}
 		{17A7DE10-EFE8-469F-8543-9A0AFE0B99BD} = {611D0B9A-4A8A-4987-AE17-4A67FF6C2B6B}
 		{16915494-C4A4-46AD-8996-EE59C94E00BB} = {611D0B9A-4A8A-4987-AE17-4A67FF6C2B6B}
-		{DC0A75D6-3653-409C-8074-362ECA779EA8} = {83B4AAAD-2DDD-4B82-BBA4-8DB080C55ADC}
 		{CB36EB10-D8CD-4C9F-B0C6-082F6AA5D2AF} = {83B4AAAD-2DDD-4B82-BBA4-8DB080C55ADC}
 		{50A2AD42-D585-46E2-AB2C-7204C9F1B883} = {A0ED69D2-1C77-439E-A331-41D509AD3596}
 		{1BD36D91-DA25-4A9B-B68C-0B413EF880C3} = {50A2AD42-D585-46E2-AB2C-7204C9F1B883}
@@ -124,5 +128,6 @@ Global
 		{F22FD659-6D88-4F63-8616-E5FCC684FBB7} = {50A2AD42-D585-46E2-AB2C-7204C9F1B883}
 		{6D739329-CA0A-4B1B-AA3E-EB3F6DE04C7E} = {50A2AD42-D585-46E2-AB2C-7204C9F1B883}
 		{4C6A42A3-9D62-4F6C-967F-7E2C801E921F} = {50A2AD42-D585-46E2-AB2C-7204C9F1B883}
+		{DC0A75D6-3653-409C-8074-362ECA779EA8} = {83B4AAAD-2DDD-4B82-BBA4-8DB080C55ADC}
 	EndGlobalSection
 EndGlobal

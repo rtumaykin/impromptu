@@ -79,7 +79,8 @@
       $(PostBuildEventDependsOn);
       PostBuildMacros;
     </PostBuildEventDependsOn>
-    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectDir)project.nuspec -Properties Configuration=$(ConfigurationName);id=$(ProjectName);version=@(VersionNumber)</PostBuildEvent>
+    <PostBuildEvent>call $(SolutionDir)..\ensureNuget.cmd
+%25LocalAppData%25\NuGet\NuGet.exe pack $(ProjectDir)project.nuspec -OutputDirectory $(TargetDir) -Properties Configuration=$(ConfigurationName);id=$(ProjectName);version=@(VersionNumber)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

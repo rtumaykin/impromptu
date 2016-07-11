@@ -7,8 +7,8 @@
     <ProjectGuid>{DC0A75D6-3653-409C-8074-362ECA779EA8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Impromptu.BaselneTest</RootNamespace>
-    <AssemblyName>Impromptu.BaselneTest</AssemblyName>
+    <RootNamespace>Impromptu.Baseline.Tests</RootNamespace>
+    <AssemblyName>Impromptu.Baseline.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

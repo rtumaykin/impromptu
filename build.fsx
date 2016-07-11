@@ -10,8 +10,6 @@ open Fake.FileUtils
 // Information about the project for Nuget and Assembly info files
 //--------------------------------------------------------------------------------
 
-
-let product = "Impromptu"
 let authors = [ "Roman Tumaykin" ]
 let copyright = "Copyright © 2015-2016 Roman Tumaykin"
 let company = "Roman Tumaykin"
@@ -101,6 +99,32 @@ Target "AssemblyInfo" <| fun _ ->
         Attribute.Version version
         Attribute.FileVersion version ] <| AssemblyInfoFileConfig(false)
 
+Target "CreatePackage" (fun _ ->
+    let project = "Impromptu"
+
+    mkdir buildDir
+
+    NuGetPack (fun p -> 
+        {p with
+            Authors = authors
+            Copyright = copyright
+            Description = description                               
+            IncludeReferencedProjects = true
+            OutputPath = buildDir
+            Project = project
+            Properties = ["Configuration", "Release"]
+            ReleaseNotes = release.Notes |> String.concat "\n"
+            Summary = description
+            Version = release.NugetVersion
+            Tags = tags |> String.concat " "
+            Title = project
+            ProjectFile = @"src\core\Impromptu\Impromptu.csproj"
+            SymbolPackage = NugetSymbolPackage.ProjectFile
+            WorkingDir = @"src\core\Impromptu\bin\Release"
+            Publish = false }) 
+            @"src\core\Impromptu\Impromptu.csproj"
+)
+
 Target "BuildRelease" DoNothing
 
 
@@ -170,7 +194,7 @@ Target "HelpNuget" <| fun _ ->
 //--------------------------------------------------------------------------------
 
 // build dependencies
-"Clean" ==> "RestorePackages" ==> "AssemblyInfo" ==> "Build" ==> "RunTests" ==> "BuildRelease"
+"Clean" ==> "RestorePackages" ==> "AssemblyInfo" ==> "Build" ==> "RunTests" ==> "CreatePackage" ==> "BuildRelease"
 
 
 

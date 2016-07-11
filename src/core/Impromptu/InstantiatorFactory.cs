@@ -65,7 +65,7 @@ namespace Impromptu
             }
         }
 
-        internal InstantiatorFactory(IPackageRetriever packageRetriever, string rootPath)
+        public InstantiatorFactory(IPackageRetriever packageRetriever, string rootPath)
         {
             _packageRetriever = packageRetriever;
             _rootPath = rootPath;

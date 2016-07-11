@@ -235,5 +235,3 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
-# Keep internal nuget.exe
-!src/.nuget/*

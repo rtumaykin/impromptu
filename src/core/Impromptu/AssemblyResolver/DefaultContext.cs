@@ -20,11 +20,18 @@ using System.Reflection;
 
 namespace Impromptu.AssemblyResolver
 {
+    /// <summary>
+    /// This class provides all methods to resolve assemblies in the default load context
+    /// </summary>
     public static class DefaultContext
     {
         private static readonly object ResolverLock = new object();
 
         private static bool _resolverWiredUp;
+
+        /// <summary>
+        /// This method wires up a Default Load Context resolver
+        /// </summary>
         public static void WireUpResolver()
         {
             lock (ResolverLock)
@@ -37,6 +44,12 @@ namespace Impromptu.AssemblyResolver
             }
         }
 
+        /// <summary>
+        /// Event Handler that handles the AssemblyResolve event raised by the assemblies that are in the BaseDirectory of an application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static Assembly Resolve(object sender, ResolveEventArgs args)
         {
             // only resolve when the request comes from the current AppDomain itself, 

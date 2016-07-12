@@ -16,7 +16,7 @@ var nugetPackageRetriever = new Impromptu.Package.NugetPackageRetriever(new[]
 	    [path_to_nuget_source]
 	});
 
-var factory = new InstantiatorFactory<[BaseType]>;(nugetPackageRetriever);
+var factory = new InstantiatorFactory<[BaseType]>(nugetPackageRetriever);
 
 var instance = factory.Instantiate(new InstantiatorKey("[name_of_nuget_package]", "[version_of_nuget_package]", "[type to instantiate]"), [constructorArg1], ..., [constructorArgN]);
 ```

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Impromptu</id>
+    <version>1.1.0</version>
+    <title>Impromptu</title>
+    <authors>Roman Tumaykin</authors>
+    <owners>Roman Tumaykin</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/rtumaykin/Impromptu/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A .NET framework for loading and isolating plugins at runtime</description>
+    <releaseNotes>Changed the plugin distribution package structure. All assemblies that a plugin needs now should be placed into an "impromptu" folder within a Nuget package.</releaseNotes>
+    <copyright>Copyright © 2015-2016 Roman Tumaykin</copyright>
+    <tags>impromptu plugins</tags>
+  </metadata>
+</package>

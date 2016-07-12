@@ -22,7 +22,7 @@ using System.Reflection;
 namespace Impromptu.AssemblyResolver
 {
     /// <summary>
-    /// Helper class to perform actions related to Assembly reference resolution
+    /// Helper class to perform actions related to Assembly reference resolution for assemblies that are outside of the BaseDirectory
     /// </summary>
     public static class PluginContext<T> where T : class
     {
